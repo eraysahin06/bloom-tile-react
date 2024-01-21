@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Navbar from './components/Navbar';
+import NavUnder from './components/NavUnder';
+import HomePage from './pages/HomePage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Navbar />
+      {/* Adjust the margin-top based on the height of your navbar */}
+      <div className="mt-[110px]">
+        <NavUnder />
+        <HomePage />
+      </div>
+    </Router>
   </React.StrictMode>
 );
 
