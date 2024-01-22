@@ -51,7 +51,7 @@ const Showroom = () => {
 
       {/* Google Maps Integration - Right Side */}
       <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <div className="relative h-96 border">
+        <div className="relative h-96 border border-black rounded-lg">
           {/* Insert your Google Maps Embed code here */}
           <iframe
             title="Bloom Tile Showroom"
@@ -66,7 +66,7 @@ const Showroom = () => {
       </div>
 
       {/* Call to Action Section */}
-      <div className="w-full mt-6 p-4 border-t-2 border-b-2 border-gray-300 rounded-lg text-center">
+      <div className="w-full mt-6 p-4 border-gray-300">
         <h2 className="text-3xl font-bold mb-4">
           Explore <span className="text-yellow-600">Luxury and Style</span> in
           Person
