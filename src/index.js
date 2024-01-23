@@ -12,11 +12,12 @@ root.render(
   <React.StrictMode>
     <Router>
       <Navbar />
-      {/* Adjust the margin-top based on the height of your navbar */}
       <div className="mt-[110px]">
         <NavUnder />
-        <HomePage />
       </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+      </Routes>
     </Router>
   </React.StrictMode>
 );
