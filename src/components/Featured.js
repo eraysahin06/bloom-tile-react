@@ -1,73 +1,82 @@
-import React, { useState, useEffect } from 'react';
-import Nightlight from '../assets/product-images/nightlight.jpg';
-import SmallLogo from '../assets/small-logo.png';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import slideData from '../data/slideData';
 
 const Featured = () => {
-  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+  const [rightCurrentSlide, setRightCurrentSlide] = useState(0);
+  const totalSlides = slideData.length;
 
-  useEffect(() => {
-    const timerInterval = setInterval(() => {
-      setTimeRemaining(calculateTimeRemaining());
-    }, 1000);
+  const goToRightPrevSlide = () => {
+    setRightCurrentSlide(
+      (prevSlide) => (prevSlide - 1 + totalSlides) % totalSlides
+    );
+  };
 
-    return () => clearInterval(timerInterval);
-  }, []);
-
-  function calculateTimeRemaining() {
-    const endDate = new Date('2024-01-31T23:59:59'); // January 31, 2024, at 23:59:59
-    const currentTime = new Date();
-    const timeDifference = endDate - currentTime;
-
-    if (timeDifference > 0) {
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-
-      return { days, hours };
-    } else {
-      return { days: 0, hours: 0 };
-    }
-  }
+  const goToRightNextSlide = () => {
+    setRightCurrentSlide((prevSlide) => (prevSlide + 1) % totalSlides);
+  };
 
   return (
-    <div
-      className="bg-cover bg-center p-6 flex flex-wrap items-center justify-center relative"
-      style={{ backgroundImage: `url(${Nightlight})` }}
-    >
-      {/* Bloom Tile Logo */}
-      <div className="w-full flex items-center justify-center">
-        <img src={SmallLogo} alt="Bloom Tile Logo" className="w-40 h-auto" />
+    <div className="my-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Left Section (Slogan) */}
+      <div className="flex items-center justify-center max-w-[500px] mb-4 lg:mb-0 mx-auto">
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Elevate Your Space with Stunning Tiles and Hardwood Flooring
+          </h2>
+          <p className="text-sm text-gray-600">
+            Discover a world of possibilities as you explore our diverse range
+            of tiles, slabs, and hardwood flooring options. Whether you're
+            looking to revamp your kitchen, bathroom, or entire living space,
+            our curated selection offers something for every taste and design
+            vision.
+          </p>
+        </div>
       </div>
 
-      {/* Left Side - Timer and January Discount */}
-      <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 md:mb-0 lg:pr-4 text-center text-white">
-        <div>
-          <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold mb-2">
-            January Discount is Here!
-          </h2>
-          <p className="text-gray-200 text-lg lg:text-xl xl:text-2xl">
-            Start the new year with style!
-          </p>
-          <p className="text-red-500 font-bold text-lg lg:text-xl xl:text-2xl">
-            Ends on 31st of January, 2024
-          </p>
+      {/* Right Section (Slide Show) */}
+      <div className="relative border border-black max-w-[800px] w-full overflow-hidden mx-auto">
+        <div className="flex items-center justify-center transition-opacity duration-500 relative h-[400px]">
+          <Link
+            to={`/products/${slideData[rightCurrentSlide].id}`}
+            target="_blank" // Open link in a new tab
+          >
+            {/* Wrap only the image with a Link */}
+            <img
+              src={slideData[rightCurrentSlide].image}
+              alt={`Right Slide ${rightCurrentSlide + 1}`}
+              className="w-full h-full object-cover cursor-pointer"
+            />
+          </Link>
 
-          {/* Timer */}
-          <div className="text-lg lg:text-xl xl:text-2xl font-bold text-white mt-2">
-            <span>Days: {timeRemaining.days}</span>
-            <span className="mx-2">|</span>
-            <span>Hours: {timeRemaining.hours}</span>
-          </div>
+          {/* Left Arrow */}
+          <button
+            onClick={goToRightPrevSlide}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black text-white p-2 rounded-full cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black"
+          >
+            &lt;
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={goToRightNextSlide}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black text-white p-2 rounded-full cursor-pointer transition-colors duration-300 hover:bg-white hover:text-black"
+          >
+            &gt;
+          </button>
         </div>
 
-        {/* Button - Go to Products Page */}
-        <Link to="/products">
-          <button className="border border-black text-white px-4 py-2 mt-4 rounded-md transition duration-300 bg-black hover:bg-white hover:text-black">
-            Explore Products
-          </button>
-        </Link>
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+          {slideData.map((product, index) => (
+            <div
+              key={index}
+              onClick={() => setRightCurrentSlide(index)}
+              className={`w-3 h-3 mx-1 cursor-pointer rounded-full ${
+                rightCurrentSlide === index ? 'bg-black' : 'bg-gray-300'
+              }`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
