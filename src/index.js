@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import ProductsPage from './pages/ProductsPage';
 import SingleProduct from './components/SingleProduct'; // Import SingleProduct
 import products from './data/products';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 
 const AppRoot = () => (
   <React.StrictMode>
@@ -31,6 +33,8 @@ const AppRoot = () => (
                 element={<SingleProduct product={product} />}
               />
             ))}
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </div>
         <Footer />
