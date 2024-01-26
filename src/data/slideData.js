@@ -4,12 +4,12 @@ import FiruzeImage from '../assets/product-images/firuze.jpg';
 
 const slideData = [
   {
-    id: 'nightlight',
+    id: '0',
     name: 'Nightlight',
     image: NightlightImage,
   },
   {
-    id: 'firuze',
+    id: '1',
     name: 'Firuze',
     image: FiruzeImage,
   },

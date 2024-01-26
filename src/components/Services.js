@@ -1,37 +1,60 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaCogs, FaObjectGroup, FaHardHat, FaPalette } from 'react-icons/fa';
 import BasicImage from '../assets/product-images/dennis-calacatta.jpg';
 import CustomImage from '../assets/product-images/city-white-decord.jpg';
 import IntermediateImage from '../assets/product-images/rocky-noda-gray.jpg';
 import AdvancedImage from '../assets/product-images/firuze.jpg';
 
-const ServiceItem = ({ icon, title, description, image }) => (
-  <div className="w-full md:w-1/2 lg:w-1/4 xl:w-1/4 mb-8 p-4">
-    <div className="bg-white rounded-md p-6 border border-gray-300">
-      {/* Image */}
-      <div className="mb-4">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-32 object-cover rounded-md"
-        />
+const ServiceItem = ({ icon, title, description, image }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate a loading delay
+    const timeoutId = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+
+    // Clear the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const containerStyles = {
+    opacity: isLoaded ? 1 : 0,
+    transform: isLoaded ? 'translateY(0)' : 'translateY(20px)',
+    transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
+  };
+
+  return (
+    <div
+      className="w-full md:w-1/2 lg:w-1/4 xl:w-1/4 mb-8 p-4"
+      style={containerStyles}
+    >
+      <div className="bg-white rounded-md p-6 border border-gray-300 overflow-hidden">
+        {/* Image */}
+        <div className="mb-4 overflow-hidden hover:scale-105">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-32 object-cover rounded-md transform transition-transform duration-300"
+          />
+        </div>
+
+        {/* Title and Icon */}
+        <h3 className="text-2xl font-bold mb-2 flex items-center">
+          {icon && <span className="mr-4">{icon}</span>}
+          {title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-gray-700">{description}</p>
       </div>
-
-      {/* Title and Icon */}
-      <h3 className="text-2xl font-bold mb-2 flex items-center">
-        {icon && <span className="mr-4">{icon}</span>}
-        {title}
-      </h3>
-
-      {/* Description */}
-      <p className="text-gray-700">{description}</p>
     </div>
-  </div>
-);
+  );
+};
 
 const Services = () => {
   return (
-    <div className="bg-white p-6 mt-8 flex flex-wrap">
+    <div className="bg-white p-8 mt-8 flex flex-wrap">
       <h2 className="w-full text-4xl font-bold mb-6">Our Services</h2>
 
       {/* Basic Service */}
@@ -75,7 +98,7 @@ const Services = () => {
 
       {/* Contact Us Now Button */}
       <div className="w-full text-center">
-        <button className="bg-black text-white px-4 py-4 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
+        <button className="text-xl bg-black text-white px-4 py-4 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
           Contact Us
         </button>
       </div>

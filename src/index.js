@@ -6,23 +6,39 @@ import reportWebVitals from './reportWebVitals';
 import Navbar from './components/Navbar';
 import NavUnder from './components/NavUnder';
 import HomePage from './pages/HomePage';
+import Footer from './components/Footer';
+import ProductsPage from './pages/ProductsPage';
+import SingleProduct from './components/SingleProduct'; // Import SingleProduct
+import products from './data/products';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const AppRoot = () => (
   <React.StrictMode>
     <Router>
-      <Navbar />
-      <div className="mt-[110px]">
-        <NavUnder />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow">
+          <div className="mt-[110px]">
+            <NavUnder />
+          </div>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            {/* Use the SingleProduct component for each product route */}
+            {products.map((product) => (
+              <Route
+                key={product.id}
+                path={`/products/${product.id}`}
+                element={<SingleProduct product={product} />}
+              />
+            ))}
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
     </Router>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<AppRoot />);
 reportWebVitals();

@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaGem } from 'react-icons/fa';
 import showroomImage from '../assets/small-logo.png';
 
 const Showroom = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Simulate a loading delay
+    const timeoutId = setTimeout(() => {
+      setIsLoaded(true);
+    }, 500);
+
+    // Clear the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const containerStyles = {
+    opacity: isLoaded ? 1 : 0,
+    transform: isLoaded ? 'translateY(0)' : 'translateY(20px)',
+    transition: 'opacity 0.5s ease-in-out, transform 0.5s ease-in-out',
+  };
+
   return (
-    <div className="bg-white p-8 mt-8 flex flex-wrap items-center">
+    <div
+      className="bg-white p-8 mt-8 flex flex-wrap items-center"
+      style={containerStyles}
+    >
       {/* Logo Section */}
       <div className="w-full mt-4 flex justify-center items-center">
         <img
@@ -53,7 +74,7 @@ const Showroom = () => {
 
       {/* Google Maps Integration - Right Side */}
       <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
-        <div className="relative h-96 border border-black rounded-lg">
+        <div className="relative h-96">
           {/* Insert your Google Maps Embed code here */}
           <iframe
             title="Bloom Tile Showroom"
@@ -69,12 +90,12 @@ const Showroom = () => {
 
       {/* Call to Action Section */}
       <div className="w-full mt-6 p-4 border-gray-300">
-        <h2 className="text-3xl font-bold mb-4 text-center md:text-left">
+        <h2 className="text-4xl font-bold mb-4 text-center md:text-left">
           Explore <span className="text-yellow-600">Luxury and Style</span> in
           Person
         </h2>
 
-        <button className="bg-black text-white px-4 py-4 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
+        <button className="text-xl bg-black text-white mt-4 px-8 py-6 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
           Book an Appointment
         </button>
       </div>
