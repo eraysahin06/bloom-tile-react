@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
 import productsData from '../data/products';
 
 const ProductsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const [loading, setLoading] = useState(true);
 
   const categories = [
     'All',
@@ -14,6 +15,16 @@ const ProductsPage = () => {
     selectedCategory === 'All'
       ? productsData
       : productsData.filter((product) => product.category === selectedCategory);
+
+  useEffect(() => {
+    // Simulate loading delay
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    // Clear the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <div className="container mx-auto mt-8 mb-10">
@@ -41,13 +52,19 @@ const ProductsPage = () => {
       {/* Products Flex Container */}
       <div className="flex flex-wrap justify-center gap-8">
         {filteredProducts.map((product) => (
-          <ProductCard
+          <div
             key={product.id}
-            product={product}
-            singleProductStyle={
-              filteredProducts.length === 1 ? 'flex-grow-0' : 'flex-grow'
-            }
-          />
+            className={`transition-all duration-500 ${
+              loading ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            <ProductCard
+              product={product}
+              singleProductStyle={
+                filteredProducts.length === 1 ? 'flex-grow-0' : 'flex-grow'
+              }
+            />
+          </div>
         ))}
       </div>
     </div>

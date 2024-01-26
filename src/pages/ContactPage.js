@@ -1,6 +1,4 @@
-// ContactPage.js
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   FaPhone,
   FaMapMarkerAlt,
@@ -9,6 +7,18 @@ import {
 } from 'react-icons/fa';
 
 const ContactPage = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    // Clear the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,7 +45,11 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8 mb-10 p-4">
+    <div
+      className={`container mx-auto mt-8 mb-10 p-4 ${
+        loading ? 'opacity-0' : 'opacity-100 transition-all duration-500'
+      }`}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Contact Form */}
         <div className="mb-8">

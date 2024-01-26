@@ -4,6 +4,7 @@ import BasicImage from '../assets/product-images/dennis-calacatta.jpg';
 import CustomImage from '../assets/product-images/city-white-decord.jpg';
 import IntermediateImage from '../assets/product-images/rocky-noda-gray.jpg';
 import AdvancedImage from '../assets/product-images/firuze.jpg';
+import { Link } from 'react-router-dom';
 
 const ServiceItem = ({ icon, title, description, image }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -98,9 +99,11 @@ const Services = () => {
 
       {/* Contact Us Now Button */}
       <div className="w-full text-center">
-        <button className="text-xl bg-black text-white px-4 py-4 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
-          Contact Us
-        </button>
+        <Link to="/contact">
+          <button className="text-xl bg-black text-white px-4 py-4 rounded-md border border-white transition duration-300 hover:bg-white hover:text-black hover:border-black">
+            Contact Us
+          </button>
+        </Link>
       </div>
     </div>
   );

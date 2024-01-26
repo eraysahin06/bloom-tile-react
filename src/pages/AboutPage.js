@@ -1,11 +1,25 @@
-// AboutPage.js
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import aboutImage from '../assets/small-logo.png'; // Import your about image
 
 const AboutPage = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay
+    const timeoutId = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    // Clear the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   return (
-    <div className="container mx-auto mt-8 mb-10">
+    <div
+      className={`container mx-auto mt-8 mb-10 ${
+        loading ? 'opacity-0' : 'opacity-100 transition-all duration-500'
+      }`}
+    >
       <div className="max-w-4xl mx-auto">
         <h1 className="text-5xl font-bold mb-8 text-center">
           About Bloom Tile
