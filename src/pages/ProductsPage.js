@@ -20,7 +20,7 @@ const ProductsPage = () => {
     // Simulate loading delay
     const timeoutId = setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 100);
 
     // Clear the timeout to avoid memory leaks
     return () => clearTimeout(timeoutId);

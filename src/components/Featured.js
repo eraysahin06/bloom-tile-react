@@ -62,6 +62,14 @@ const Featured = () => {
             our curated selection offers something for every taste and design
             vision.
           </p>
+
+          {/* Button to View All Products */}
+          <Link
+            to="/products"
+            className="text-xl mt-4 text-white bg-black py-4 px-6 rounded-lg inline-block transition-all duration-300 hover:bg-white hover:text-black border border-black"
+          >
+            View All Products
+          </Link>
         </div>
       </div>
 
