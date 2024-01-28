@@ -34,7 +34,7 @@ const AboutPage = () => {
             />
           </div>
 
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 p-4">
             <p className="text-lg text-gray-800">
               Welcome to Bloom Tile, where we passionately transform spaces with
               a blend of timeless beauty and exceptional quality. Our curated,

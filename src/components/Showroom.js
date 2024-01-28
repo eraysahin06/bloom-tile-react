@@ -40,7 +40,7 @@ const Showroom = () => {
       </div>
 
       {/* Text Section - Left Side */}
-      <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 md:mb-0 lg:pr-4">
+      <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 md:mb-0 lg:pr-4 p-4">
         {/* State-of-Art Showroom */}
         <div className="mb-6 bg-gray-200 p-4 rounded-md w-full md:w-5/6 mx-auto md:mx-0">
           <h2 className="text-2xl font-bold mb-2 flex items-center">
@@ -73,7 +73,7 @@ const Showroom = () => {
       </div>
 
       {/* Google Maps Integration - Right Side */}
-      <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2">
+      <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 p-4">
         <div className="relative h-96">
           {/* Insert your Google Maps Embed code here */}
           <iframe
