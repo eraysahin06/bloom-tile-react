@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import LOGO from '../assets/bloom-tile-logo.png';
+import LOGO from '../assets/nav-logo-bloom-tile.png';
 
 const Navbar = () => {
   const [isMenuOpen, setMenuOpen] = useState(false);

@@ -56,7 +56,7 @@ const ServiceItem = ({ icon, title, description, image }) => {
 const Services = () => {
   return (
     <div className="bg-white p-8 mt-8 flex flex-wrap">
-      <h2 className="w-full text-4xl font-bold mb-6">Our Services</h2>
+      <h2 className="w-full text-4xl font-bold mb-6 p-4">Our Services</h2>
 
       {/* Basic Service */}
       <ServiceItem

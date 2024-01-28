@@ -34,7 +34,7 @@ const Showroom = () => {
           className="w-40 h-40 rounded-md mb-4"
         />
         {/* Title */}
-        <h2 className="w-full text-4xl font-bold mb-6 text-center md:text-left">
+        <h2 className="w-full text-5xl mb-6 text-center md:text-left">
           You're Invited!
         </h2>
       </div>
@@ -43,7 +43,7 @@ const Showroom = () => {
       <div className="w-full md:w-1/2 lg:w-1/2 xl:w-1/2 mb-4 md:mb-0 lg:pr-4 p-4">
         {/* State-of-Art Showroom */}
         <div className="mb-6 bg-gray-200 p-4 rounded-md w-full md:w-5/6 mx-auto md:mx-0">
-          <h2 className="text-2xl font-bold mb-2 flex items-center">
+          <h2 className="text-2xl mb-2 flex items-center">
             <span className="mr-2">
               <FaGem />
             </span>
@@ -58,7 +58,7 @@ const Showroom = () => {
 
         {/* You Won't Leave Empty-Handed */}
         <div className="bg-gray-200 p-4 rounded-md w-full md:w-5/6 mx-auto md:mx-0">
-          <h2 className="text-2xl font-bold mb-2 flex items-center">
+          <h2 className="text-2xl mb-2 flex items-center">
             <span className="mr-2">
               <FaGem />
             </span>
@@ -90,7 +90,7 @@ const Showroom = () => {
 
       {/* Call to Action Section */}
       <div className="w-full mt-6 p-4 border-gray-300">
-        <h2 className="text-4xl font-bold mb-4 text-center md:text-left">
+        <h2 className="text-5xl mb-4 text-center md:text-left">
           Explore <span className="text-yellow-600">Luxury and Style</span> in
           Person
         </h2>
